@@ -1,14 +1,16 @@
-# Libraries required for HuggingFace and LangChain
+# Libraries required for OpenAI, Gemini, HuggingFace and LangChain
 # pip install -q -U -r requirements.txt
 
-huggingface_hub
+huggingface-hub
 transformers
 accelerate 
 bitsandbytes
+openai
+google-genai
 langchain
 langchain-huggingface
 langchain-core 
-langchain_community
+langchain-community
 bs4 
 requests 
 faiss-cpu
@@ -18,7 +20,6 @@ langchain-openai
 streamlit
 pypdf
 sentence-transformers
-openai
 sentencepiece 
 
 
