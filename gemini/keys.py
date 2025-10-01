@@ -1,4 +1,4 @@
 import os
-GOOGLEKEY = os.getenv("GEMINI_KEY")
+GOOGLEKEY = os.getenv("GEMINI_API_KEY")
 
  
