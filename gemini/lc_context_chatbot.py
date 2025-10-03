@@ -10,6 +10,10 @@ while True:
     query = input("Enter query [end to stop, new to start new chat]:")
     if query.lower() == 'end':
         break 
+
+    if query.lower() == 'new':
+        messages = [messages[0]]  # Remove all but first message 
+        continue 
  
     messages.append(HumanMessage(content = query))
     response = model.invoke(messages)
