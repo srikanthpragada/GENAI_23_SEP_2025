@@ -1,10 +1,8 @@
 import sqlite3
 from langchain.prompts import PromptTemplate
-from huggingface_hub import InferenceClient
- 
-import keys 
+from langchain.chat_models import init_chat_model
 
-db_path = r"courses.db"
+db_path = r"./sqlite/courses.db"
 
 def get_courses():
     # Use DBAPI
@@ -26,7 +24,7 @@ context = ""
 for course in courses:
     context += concate_course(course) + "\n\n"
 
-print(context)
+#print(context)
 
 prompt_template_str = """
 Answer the question based on the given context. 
@@ -36,17 +34,13 @@ Question: {question}
 
 prompt_template = PromptTemplate.from_template(prompt_template_str)
 prompt = prompt_template.format(context=context, 
-                question="What is the fee for Generative AI course?")
+                question="What is the fee for DataScience course?")
 
-repo_id = "mistralai/Mistral-7B-Instruct-v0.3"
-llm = InferenceClient(repo_id, token=keys.HUGGINGFACEKEY, timeout=120)
+llm = init_chat_model("gemini-2.5-flash", model_provider="google_genai")
 
-messages = [
-    {"role": "user", "content": prompt}
-]
-
-response = llm.chat_completion(messages)
-print(response.choices[0].message.content)
+result = llm.invoke(prompt)
+print(result.content)
+ 
 
 
 
